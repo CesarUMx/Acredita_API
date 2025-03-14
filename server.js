@@ -1,10 +1,10 @@
 // Cargar variables de entorno solo si NO estamos en Railway
-if (!process.env.RAILWAY_ENVIRONMENT) {
+if (!process.env.RAILWAY_ENVIRONMENT_NAME) {
     require('dotenv').config();
 }
 
 // Imprimir la clave de Stripe para depuración (puedes quitarlo después)
-console.log("🔹 Stripe Key:", process.env.STRIPE_SECRET_KEY);
+console.log("🔹 Stripe Key:", process.env.RAILWAY_PRIVATE_DOMAIN);
 
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
