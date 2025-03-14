@@ -1,4 +1,11 @@
-require('dotenv').config();
+// Cargar variables de entorno solo si NO estamos en Railway
+if (!process.env.RAILWAY_ENVIRONMENT) {
+    require('dotenv').config();
+}
+
+// Imprimir la clave de Stripe para depuración (puedes quitarlo después)
+console.log("🔹 Stripe Key:", process.env.STRIPE_SECRET_KEY);
+
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const axios = require('axios');
