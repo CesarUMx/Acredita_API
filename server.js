@@ -1,10 +1,5 @@
-// Cargar variables de entorno solo si NO estamos en Railway
-if (!process.env.RAILWAY_ENVIRONMENT_NAME) {
-    require('dotenv').config();
-}
-
-console.log("🔹 Todas las variables de entorno disponibles en Railway:");
-console.log(process.env);
+console.log("Iniciando servidor...");
+console.log(process.env.STRIPE_SECRET_KEY);
 
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
