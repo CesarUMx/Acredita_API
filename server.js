@@ -3,15 +3,8 @@ if (!process.env.RAILWAY_ENVIRONMENT_NAME) {
     require('dotenv').config();
 }
 
-console.log("🔹 Cargando variables de entorno en Railway...");
-console.log("🔹 Stripe Key (antes):", process.env.STRIPE_SECRET_KEY);
-
-// Forzar la carga de variables en Railway
-Object.keys(process.env).forEach(key => {
-    process.env[key] = process.env[key].trim(); // Eliminar espacios en blanco
-});
-
-console.log("🔹 Stripe Key (después):", process.env.STRIPE_SECRET_KEY);
+console.log("🔹 Todas las variables de entorno disponibles en Railway:");
+console.log(process.env);
 
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
