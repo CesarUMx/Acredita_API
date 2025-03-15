@@ -8,10 +8,14 @@ const axios = require('axios');
 const FormData = require('form-data');
 
 const app = express();
-const PORT = 3020;
+const PORT = process.env.PORT || 3020;
 
 // Middleware para recibir Webhooks sin procesar (necesario para validar la firma)
 app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf.toString(); }}));
+
+app.get('/', (req, res) => {
+    res.send('Servidor de pagos de Stripe en Node.js');
+});
 
 // Ruta del Webhook de Stripe
 app.post('/webhook-stripe', async (req, res) => {
