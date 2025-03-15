@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3020;
 app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf.toString(); }}));
 
 app.get('/', (req, res) => {
+    console.log('Servidor de pagos de Stripe en Node.js');
     res.send('Servidor de pagos de Stripe en Node.js');
 });
 
