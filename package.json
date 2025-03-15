@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "preinstall": "export $(cat /etc/environment | xargs)",
     "start": "node server.js"
   },
   "keywords": [],
