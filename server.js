@@ -1,6 +1,4 @@
 console.log("Iniciando servidor...");
-console.log(process.env.STRIPE_SECRET_KEY);
-console.log("Domain: " + process.env.RAILWAY_PRIVATE_DOMAIN);
 
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
