@@ -1,5 +1,16 @@
 console.log("Iniciando servidor...");
+let payment;
 
+if (process.env.RAILWAY_PUBLIC_DOMAIN !== undefined) {
+    console.log("⚠️ Servidor en modo de producción. No se cargarán datos de prueba.");
+    payment = 'plink_1R2itsGsAvyBfqN94FZPZzgl'
+} else {
+    console.log("⚠️ Servidor en modo de desarrollo. Se cargarán datos de prueba.");
+    require('dotenv').config();
+    payment = 'plink_1R1epqGsAvyBfqN9SdMHsfQN'
+}
+
+console.log("✅ Payment link:", payment);
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const axios = require('axios');
@@ -29,7 +40,7 @@ app.post('/webhook-stripe', async (req, res) => {
     }
 
     // Verificar si el evento es un pago exitoso
-    if (event.type === 'checkout.session.completed') {
+    if (event.type === 'checkout.session.completed' && event.data.object.payment_link === payment) {
         const session = event.data.object;
         const email = session.customer_details.email;
         const name = session.customer_details.name;
